@@ -1,0 +1,9 @@
+[Unit]
+Description=Sample service to sync ~/Documents to S3
+
+[Service]  
+Restart=on-failure
+ExecStart=%h/go/bin/fanotify --path %h/Documents %h/go/bin/rclone sync %h/Documents s3:Documents
+
+[Install]
+WantedBy=default.target
