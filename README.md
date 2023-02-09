@@ -17,5 +17,5 @@ sudo setcap cap_sys_admin+eip ~/go/bin/fanotify
 Sync changes to `~/Documents` to a remote S3 bucket, using [rclone](https://rclone.org), when there are changes:
 
 ```
-fanotify --path ~/Documents /usr/local/bin/rclone sync $HOME/Documents s3:mybucket/Documents
+fanotify --path ~/Documents rclone sync $HOME/Documents s3:mybucket/Documents
 ```

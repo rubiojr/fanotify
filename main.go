@@ -13,11 +13,14 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-var cmdArgs = os.Args[1:]
+var cmdArgs []string
+var bin string
 var watchPath string
 
 func main() {
 	flag.Parse()
+	cmdArgs = flag.Args()
+	bin = flag.Arg(0)
 
 	if watchPath == "" {
 		fmt.Println("invalid path.")
@@ -43,7 +46,8 @@ func main() {
 		log.Fatalf("%v\n", err)
 	}
 
-	log.Printf("watching %s", watchPath)
+	log.Printf("watching: %s", watchPath)
+	log.Printf("command: %s", bin)
 
 	if err = notify.Mark(
 		unix.FAN_MARK_ADD|
